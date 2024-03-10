@@ -1,12 +1,10 @@
 <script setup>
+  import Nav from './components/Nav.vue';
 </script>
 
 <template>
-  <div>
-    <h1>Vue Breeze Api</h1>
-  </div>
+  <main> 
+    <Nav />
+    <RouterView />
+  </main>
 </template>
-
-<style scoped>
-
-</style>
