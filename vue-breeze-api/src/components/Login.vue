@@ -1,19 +1,25 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
-import { routeLocationKey, useRouter} from 'vue-router'
+import { useRouter} from 'vue-router'
 
+const router = useRouter();
 const form = ref({
   email: '',
   password: ''
 });
 
+const getToken = async()=> {
+  await axios.get("/sanctum/csrf-cookie");
+};
+
 const handleLogin = async() =>{
+  await getToken();
   await axios.post('/login', {
     email: form.value.email,
     password: form.value.password
   });
-  routerKey.push("/");
+  router.push("/");
 };
 
 
