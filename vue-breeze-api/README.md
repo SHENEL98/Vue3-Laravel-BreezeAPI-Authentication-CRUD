@@ -11,3 +11,5 @@
 - Edit style.css
 - Add forms into login and register
 
+- create store/auth.js
+- apply axios in there and do changes in home.vue
