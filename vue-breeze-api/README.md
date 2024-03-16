@@ -13,3 +13,7 @@
 
 - create store/auth.js
 - apply axios in there and do changes in home.vue
+
+- Auth display errors
+- do changes in auth.js (create a error and use try catch to get error response )
+- apply to show errors in components 
