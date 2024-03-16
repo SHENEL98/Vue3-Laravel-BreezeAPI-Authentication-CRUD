@@ -1,26 +1,15 @@
 <script setup>
 import { ref } from 'vue';
-import axios from 'axios';
-import { useRouter} from 'vue-router'
+import { useAuthStore } from '../stores/auth';
 
-const router = useRouter();
+const authStore = useAuthStore();
 const form = ref({
   email: '',
   password: ''
 });
 
-const getToken = async()=> {
-  await axios.get("/sanctum/csrf-cookie");
-};
 
-const handleLogin = async() =>{
-  await getToken();
-  await axios.post('/login', {
-    email: form.value.email,
-    password: form.value.password
-  });
-  router.push("/");
-};
+
 
 
 </script>
@@ -32,7 +21,7 @@ const handleLogin = async() =>{
       </div>
   
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" @submit.prevent="handleLogin">
+        <form class="space-y-6" @submit.prevent="authStore.handleLogin(form)">
           <div>
             <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
             <div class="mt-2">

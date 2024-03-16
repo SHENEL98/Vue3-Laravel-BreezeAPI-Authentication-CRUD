@@ -1,27 +1,14 @@
 <script setup>
   import { ref } from 'vue';
-  import axios from 'axios';
-  import { useRouter } from 'vue-router';
+  import { useAuthStore } from '../stores/auth';
 
-  const router = useRouter()
+  const authStore = useAuthStore();
   const form = ref({
     name: '',
     email: '',
     password: '',
     password_confirmation: ''
   });
-
-  const handleRegister= async()=>{
-    await axios.post('/register',{
-      name: form.value.name,
-      email: form.value.email,
-      password: form.value.password,
-      password_confirmation: form.value.password_confirmation,
-    });
-    router.push('/');
-  }
-
-
 </script>
 <template> 
     <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -31,7 +18,7 @@
       </div>
   
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" @submit.prevent="handleRegister" >
+        <form class="space-y-6" @submit.prevent="authStore.handleRegister(form)" >
           <div>
             <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
             <div class="mt-2">
