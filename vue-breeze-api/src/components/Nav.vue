@@ -1,4 +1,7 @@
 <script setup>
+    import { useAuthStore} from '../stores/auth';
+
+    const authStore = useAuthStore();
 
 </script>
 <template>
@@ -25,9 +28,22 @@
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <a v-for="item in navigation" :key="item.name" :href="item.href"
-                                :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium']"
-                                :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a>
+                            <template v-if="authStore.user">    
+                                <router-link :to="{ name: 'Home' }"
+                                class="text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium'"
+                                >Home</router-link>
+                                <router-link :to="{ name: 'Login' }"
+                                class="text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium'"
+                                >Login</router-link>
+                                <router-link :to="{ name: 'Register' }"
+                                class="text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium'"
+                                >Register</router-link>
+                            </template>
+                            <template v-else>
+                            <button @click="authStore.handleLogout"
+                                class="text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium'"
+                                >Logout</button>
+                            </template>
                         </div>
                     </div>
                 </div>
