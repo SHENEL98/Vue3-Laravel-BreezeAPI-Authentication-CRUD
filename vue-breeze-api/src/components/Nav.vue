@@ -1,76 +1,124 @@
 <script setup>
-    import { useAuthStore} from '../stores/auth';
+import { useAuthStore } from "../stores/auth";
 
-    const authStore = useAuthStore();
-
+const authStore = useAuthStore();
 </script>
 <template>
-    <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
-        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div class="relative flex h-16 items-center justify-between">
-                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                    <!-- Mobile menu button-->
-                    <DisclosureButton
-                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                        <span class="absolute -inset-0.5" />
-                        <span class="sr-only">Open main menu</span>
-                        <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
-                        <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
-                    </DisclosureButton>
-                </div>
-                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="flex flex-shrink-0 items-center">
-                        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                            alt="Your Company" />
-                    </div>
-                    
-                </div>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <div class="hidden sm:ml-6 sm:block">
-                        <div class="flex space-x-4">
-                            <template v-if="authStore.user">    
-                                <router-link :to="{ name: 'Home' }"
-                                class="text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium'"
-                                >Home</router-link>
-                                <router-link :to="{ name: 'Login' }"
-                                class="text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium'"
-                                >Login</router-link>
-                                <router-link :to="{ name: 'Register' }"
-                                class="text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium'"
-                                >Register</router-link>
-                            </template>
-                            <template v-else>
-                            <button @click="authStore.handleLogout"
-                                class="text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium'"
-                                >Logout</button>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <DisclosurePanel class="sm:hidden">
-            <div class="space-y-1 px-2 pb-3 pt-2">
-                <DisclosureButton v-for="item in navigation" :key="item.name" as="a" :href="item.href"
-                    :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block rounded-md px-3 py-2 text-base font-medium']"
-                    :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
-            </div>
-        </DisclosurePanel>
-    </Disclosure>
+  <nav class="rounded bg-indigo-900 text-white px-2 py-2.5 sm:px-4">
+    <div
+      class="container mx-auto flex flex-wrap items-center justify-between"
+      bis_skin_checked="1"
+    >
+      <a href="https://laraveller.com/" class="flex items-center">
+        Laraveller
+      </a>
+      <button
+        data-collapse-toggle="navbar-default"
+        type="button"
+        class="
+          ml-3
+          inline-flex
+          items-center
+          rounded-lg
+          p-2
+          text-sm text-gray-500
+          hover:bg-gray-100
+          focus:outline-none focus:ring-2 focus:ring-gray-200
+          dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600
+          md:hidden
+        "
+        aria-controls="navbar-default"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="h-6 w-6"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+      <div
+        class="hidden w-full md:block md:w-auto"
+        id="navbar-default"
+        bis_skin_checked="1"
+      >
+        <ul
+          class="
+            mt-4
+            flex flex-col
+            rounded-lg
+            p-4
+            md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium
+          "
+        >
+          <li>
+            <router-link
+              :to="{ name: 'Home' }"
+              class="block rounded py-2 pr-4 pl-3 text-white"
+              aria-current="page"
+              >Home</router-link
+            >
+          </li>
+          <template v-if="!authStore.user">
+            <li>
+              <router-link
+                :to="{ name: 'Login' }"
+                class="
+                  block
+                  rounded
+                  py-2
+                  pr-4
+                  pl-3
+                  text-gray-50
+                  hover:bg-gray-700
+                "
+                >Login</router-link
+              >
+            </li>
+            <li>
+              <router-link
+                :to="{ name: 'Register' }"
+                class="
+                  block
+                  rounded
+                  py-2
+                  pr-4
+                  pl-3
+                  text-gray-50
+                  hover:bg-gray-700
+                  md:border-0
+                "
+                >Register</router-link
+              >
+            </li>
+          </template>
+          <template v-else>
+            <button
+              @click="authStore.handleLogout"
+              class="
+                block
+                rounded
+                py-2
+                pr-4
+                pl-3
+                text-gray-50
+                hover:bg-gray-700
+                md:border-0
+              "
+            >
+              Logout
+            </button>
+          </template>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </template>
-
-<script setup>
-  import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-  import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
-  
-  const navigation = [
-    { name: 'Home', href: '/', current: true },
-    { name: 'Login', href: '/login', current: false },
-    { name: 'Register', href: '/register', current: false },
-  ]
-  </script>
-
-<script setup>
-
-  </script>

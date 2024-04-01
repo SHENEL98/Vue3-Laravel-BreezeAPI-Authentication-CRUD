@@ -1,73 +1,163 @@
 <script setup>
-  import { ref } from 'vue';
-  import { useAuthStore } from '../stores/auth';
+import { ref } from "vue";
+import { useAuthStore } from "../stores/auth";
 
-  const authStore = useAuthStore();
-  const form = ref({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: ''
-  });
+const authStore = useAuthStore();
+
+const form = ref({
+  name: "",
+  email: "",
+  password: "",
+  password_confirmation: "",
+});
 </script>
-<template> 
-    <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
-        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign up to account</h2>
-      </div>
-  
-      <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" @submit.prevent="authStore.handleRegister(form)" >
-          <div>
-            <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
-            <div class="mt-2">
-              <input v-model="form.name" type="text" autocomplete="name" required="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-              <div v-if="authStore.errors.name" class="flex">
-                <span class="text-red-400 text-sm m-2 p-2">{{ authStore.errors.name[0] }}</span>
+<template>
+  <!-- ====== Forms Section Start -->
+  <section class="bg-[#F4F7FF] py-20 lg:py-[120px]">
+    <div class="container mx-auto">
+      <div class="-mx-4 flex flex-wrap">
+        <div class="w-full px-4">
+          <div
+            class="
+              relative
+              mx-auto
+              max-w-[525px]
+              overflow-hidden
+              rounded-lg
+              bg-white
+              py-16
+              px-10
+              text-center
+              sm:px-12
+              md:px-[60px]
+            "
+          >
+            <div class="mb-10 text-center md:mb-16">Laraveller</div>
+            <form @submit.prevent="authStore.handleRegister(form)">
+              <div class="mb-6">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  v-model="form.name"
+                  class="
+                    bordder-[#E9EDF4]
+                    w-full
+                    rounded-md
+                    border
+                    bg-[#FCFDFE]
+                    py-3
+                    px-5
+                    text-base text-body-color
+                    placeholder-[#ACB6BE]
+                    outline-none
+                    focus:border-primary
+                    focus-visible:shadow-none
+                  "
+                />
+                <div v-if="authStore.errors.name" class="flex">
+                  <span class="text-red-400 text-sm m-2 p-2">{{
+                    authStore.errors.name[0]
+                  }}</span>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <div>
-            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-            <div class="mt-2">
-              <input v-model="form.email" type="email" autocomplete="email" required="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-              <div v-if="authStore.errors.email" class="flex">
-                <span class="text-red-400 text-sm m-2 p-2">{{ authStore.errors.email[0] }}</span>
+              <div class="mb-6">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  v-model="form.email"
+                  class="
+                    bordder-[#E9EDF4]
+                    w-full
+                    rounded-md
+                    border
+                    bg-[#FCFDFE]
+                    py-3
+                    px-5
+                    text-base text-body-color
+                    placeholder-[#ACB6BE]
+                    outline-none
+                    focus:border-primary
+                    focus-visible:shadow-none
+                  "
+                />
+                <div v-if="authStore.errors.email" class="flex">
+                  <span class="text-red-400 text-sm m-2 p-2">{{
+                    authStore.errors.email[0]
+                  }}</span>
+                </div>
               </div>
-            </div>
-          </div>
-  
-          <div>
-            <div class="flex items-center justify-between">
-              <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-            </div>
-            <div class="mt-2">
-              <input v-model="form.password" type="password" autocomplete="current-password" required="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-              <div v-if="authStore.errors.password" class="flex">
-                <span class="text-red-400 text-sm m-2 p-2">{{ authStore.errors.password[0] }}</span>
+              <div class="mb-6">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  v-model="form.password"
+                  class="
+                    bordder-[#E9EDF4]
+                    w-full
+                    rounded-md
+                    border
+                    bg-[#FCFDFE]
+                    py-3
+                    px-5
+                    text-base text-body-color
+                    placeholder-[#ACB6BE]
+                    outline-none
+                    focus:border-primary
+                    focus-visible:shadow-none
+                  "
+                />
+                <div v-if="authStore.errors.password" class="flex">
+                  <span class="text-red-400 text-sm m-2 p-2">{{
+                    authStore.errors.password[0]
+                  }}</span>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex items-center justify-between">
-              <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password Confirmation</label>
-            </div>
-            <div class="mt-2">
-              <input v-model="form.password_confirmation" type="password" autocomplete="current-password" required="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-              <div v-if="authStore.errors.password_confirmation" class="flex">
-                <span class="text-red-400 text-sm m-2 p-2">{{ authStore.errors.password_confirmation[0] }}</span>
+              <div class="mb-6">
+                <input
+                  type="password"
+                  placeholder="Password Confirmation"
+                  v-model="form.password_confirmation"
+                  class="
+                    bordder-[#E9EDF4]
+                    w-full
+                    rounded-md
+                    border
+                    bg-[#FCFDFE]
+                    py-3
+                    px-5
+                    text-base text-body-color
+                    placeholder-[#ACB6BE]
+                    outline-none
+                    focus:border-primary
+                    focus-visible:shadow-none
+                  "
+                />
               </div>
-            </div>
+              <div class="mb-10">
+                <button
+                  type="submit"
+                  class="
+                    w-full
+                    px-4
+                    py-3
+                    bg-indigo-500
+                    hover:bg-indigo-700
+                    rounded-md
+                    text-white
+                  "
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+            <p class="text-base text-[#adadad]">
+              <router-link to="/login" class="text-primary hover:underline">
+                Sign In
+              </router-link>
+            </p>
           </div>
-  
-          <div>
-            <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Register</button>
-          </div>
-        </form> 
+        </div>
       </div>
     </div>
-  </template>
-  
+  </section>
+</template>
