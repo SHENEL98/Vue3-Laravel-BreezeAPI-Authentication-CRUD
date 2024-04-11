@@ -101,6 +101,21 @@ const authStore = useAuthStore();
             </li>
           </template>
           <template v-else>
+            <li>
+              <router-link
+                :to="{ name: 'Post' }"
+                class="
+                  block
+                  rounded
+                  py-2
+                  pr-4
+                  pl-3
+                  text-gray-50
+                  hover:bg-gray-700
+                "
+                >Post</router-link
+              >
+            </li>
             <button
               @click="authStore.handleLogout"
               class="

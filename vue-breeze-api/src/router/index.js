@@ -5,6 +5,11 @@ import Home from "../components/Home.vue";
 const routes = [
   { path: "/", name: "Home", component: Home },
   {
+    path: "/post",
+    name: "Post",
+    component: () => import("../components/pages/Post.vue"),
+  },
+  {
     path: "/login",
     name: "Login",
     component: () => import("../components/Login.vue"),
