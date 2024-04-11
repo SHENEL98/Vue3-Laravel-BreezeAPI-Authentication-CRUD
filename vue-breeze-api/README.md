@@ -17,3 +17,7 @@
 - Auth display errors
 - do changes in auth.js (create a error and use try catch to get error response )
 - apply to show errors in components 
+
+-----------------
+
+- do changes in vue component

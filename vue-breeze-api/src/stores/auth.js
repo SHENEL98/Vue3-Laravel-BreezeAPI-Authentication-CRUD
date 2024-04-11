@@ -4,11 +4,13 @@ import axios from "axios";
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     authUser: null,
+    allPosts: null,
     authErrors: [],
     authStatus: null,
   }),
   getters: {
     user: (state) => state.authUser,
+    posts:(state) => state.allPosts,
     errors: (state) => state.authErrors,
     status: (state) => state.authStatus,
   },
@@ -20,6 +22,12 @@ export const useAuthStore = defineStore("auth", {
       await this.getToken();
       const data = await axios.get("/api/user");
       this.authUser = data.data;
+    },
+    async getPosts(){
+      await this.getToken();
+      const posts = await axios.get("/api/posts");
+      this.allPosts = posts.data;
+      console.log()
     },
     async handleLogin(data) {
       this.authErrors = [];
