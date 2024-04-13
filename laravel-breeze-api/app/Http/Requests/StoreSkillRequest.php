@@ -26,6 +26,7 @@ class StoreSkillRequest extends FormRequest
         return [
             'name' => ['required','min:3','max:20'],
             'slug' => ['required', 'unique:skills,slug']
+            /** 'slug' => ['required', 'unique:skills,slug'. this->skill->id]  when update, this colum won't update */
         ];
     }
 }
