@@ -67,6 +67,14 @@ const authStore = useAuthStore();
               >Home</router-link
             >
           </li>
+          <li>
+            <router-link
+              :to="{ name: 'SkillsIndex' }"
+              class="block rounded py-2 pr-4 pl-3 text-white"
+              aria-current="page"
+              >Skills</router-link
+            >
+          </li>
           <template v-if="!authStore.user">
             <li>
               <router-link

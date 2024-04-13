@@ -10,6 +10,21 @@ const routes = [
     component: () => import("../components/pages/Post.vue"),
   },
   {
+    path: "/skills",
+    name: "SkillsIndex",
+    component: () => import("../components/pages/skill/Index.vue"),
+  },
+  {
+    path: "/skills/create",
+    name: "SkillCreate",
+    component: () => import("../components/pages/skill/Create.vue"),
+  },
+  {
+    path: "/skills/:id/edit",
+    name: "SkillEdit",
+    component: () => import("../components/pages/skill/Edit.vue"),
+  },
+  {
     path: "/login",
     name: "Login",
     component: () => import("../components/Login.vue"),
