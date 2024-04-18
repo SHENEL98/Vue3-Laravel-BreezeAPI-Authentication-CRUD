@@ -21,7 +21,7 @@ export default function useSkills(){
 
     const storeSkill = async(data)=>{
         try{
-            await axios.post("skills", data);
+            await axios.post("api/v1/skills", data);
             await router.push({name: "SkillIndex"});
         }catch(error){
             if(error.response.status === 422){
@@ -50,6 +50,6 @@ export default function useSkills(){
     }
 
     return {
-        skill,skills,getSkill,getSkills, updateSkill,deleteSkill, errors
+        skill,skills,getSkill,getSkills,storeSkill, updateSkill,deleteSkill, errors
     }
 }

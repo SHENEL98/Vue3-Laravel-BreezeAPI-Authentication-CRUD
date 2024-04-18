@@ -1,6 +1,9 @@
 <template>
     <div class="mt-6">
         <h1>Skills</h1>
+        <div class="flex justify-end m-2 p-2">
+            <router-link :to="{name: 'SkillCreate'}" class="ps-10 py-2 bg-blue-500 hover:bg-blue-700"> Create New Skill</router-link>
+        </div>
         <div class="mt-6 relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-white-50 dark:bg-white-700 dark:text-gray-400">
@@ -33,6 +36,7 @@
                         </td>
                         <td class="px-6 py-4 text-right">
                             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="#" class="font-medium text-blue-600 dark:text-red-500 hover:underline">Delete</a>
                         </td>
                     </tr>
                 </tbody>
