@@ -23,6 +23,7 @@ const routes = [
     path: "/skills/:id/edit",
     name: "SkillEdit",
     component: () => import("../components/pages/skill/Edit.vue"),
+    props: true,
   },
   {
     path: "/login",

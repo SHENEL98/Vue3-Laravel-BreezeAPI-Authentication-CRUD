@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <button type="submit" class="bg-blue">Save</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded">Save</button>
                 </div>
             </div>
         </form>

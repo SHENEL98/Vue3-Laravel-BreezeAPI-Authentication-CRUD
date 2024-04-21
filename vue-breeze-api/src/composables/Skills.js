@@ -22,7 +22,7 @@ export default function useSkills(){
     const storeSkill = async(data)=>{
         try{
             await axios.post("api/v1/skills", data);
-            await router.push({name: "SkillIndex"});
+            await router.push({name: 'SkillsIndex'});
         }catch(error){
             if(error.response.status === 422){
                 errors.value = error.response.data.errors;
@@ -32,8 +32,9 @@ export default function useSkills(){
 
     const updateSkill = async(id)=>{
         try{
-            await axios.post("skills/"+id, skill.value);
-            await router.push({name: "SkillIndex"});
+            //await axios.patch(`/api/companies/${id}`, company.value)
+            await axios.patch("api/v1/skills/"+id, skill.value);
+            await router.push({name: 'SkillsIndex'});
 
         }catch(error){
             if(error.response.status === 422){
@@ -43,10 +44,11 @@ export default function useSkills(){
     }
     const deleteSkill = async(id)=>{
         if(window.confirm("Are you sure ?")){
+            await axios.delete("api/v1/skills/"+id);
+            await getSkills();
             return;
         }
-        await axios.delete("skills/"+id);
-        await getSkills();
+        
     }
 
     return {
