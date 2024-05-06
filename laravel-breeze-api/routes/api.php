@@ -4,10 +4,16 @@ use App\Http\Controllers\Api\SkillController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\BookController;
 
 Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('skills', SkillController::class);
 });
+
+Route::group(['prefix' => 'v2'], function() {
+   Route::apiResource('books',BookController::class);
+});
+
 
 
 
@@ -30,5 +36,7 @@ Route::middleware(['auth:sanctum'])->group(function (){
         return $request->user();
     });
     Route::resource('/posts',PostController::class);
+    //Route::resource('/books',BookController::class);
+
 });
 

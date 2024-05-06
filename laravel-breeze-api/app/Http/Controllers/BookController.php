@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\book;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBookRequest;
 
 class BookController extends Controller
 {
@@ -14,7 +15,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        return book::all();
     }
 
     /**
@@ -33,9 +34,10 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-        //
+        book::create($request->validated());
+        return response()->json("Book stored");
     }
 
     /**
@@ -80,6 +82,7 @@ class BookController extends Controller
      */
     public function destroy(book $book)
     {
-        //
+        $book->delete();
+        return response()->json("book deleted");
     }
 }

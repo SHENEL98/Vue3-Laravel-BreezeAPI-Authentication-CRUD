@@ -124,6 +124,21 @@ const authStore = useAuthStore();
                 >Post</router-link
               >
             </li>
+            <li>
+              <router-link
+                :to="{ name: 'BooksIndex' }"
+                class="
+                  block
+                  rounded
+                  py-2
+                  pr-4
+                  pl-3
+                  text-gray-50
+                  hover:bg-gray-700
+                "
+                >Books</router-link
+              >
+            </li>
             <button
               @click="authStore.handleLogout"
               class="
