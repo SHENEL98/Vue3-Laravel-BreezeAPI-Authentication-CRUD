@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\book;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreBookRequest;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -15,7 +16,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        return book::all();
+        $books = DB::table('books')->get();
+        return $books; 
     }
 
     /**

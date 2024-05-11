@@ -24,26 +24,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!--<tr v-for="book in books" :key="book.id" class="bg-white dark:bg-white-800">
+                    <tr v-for="book in books" :key="book.id" class="bg-white dark:bg-white-800">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray">
                             {{ book.name }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ book.slug }}
+                            {{ book.price }}
                         </td>
                         <td class="px-10 py-4 text-right">
-                            <router-link :to="{name: 'SkillEdit', params: {id: skill.id}}" class="
+                            <!--<router-link :to="{name: 'SkillEdit', params: {id: skill.id}}" class="
                                 px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded"> Edit </router-link>
-                            <button @click="deleteSkill(skill.id)" class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded"> Delete</button>
+                            <button @click="deleteSkill(skill.id)" class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded"> Delete</button>-->
                         </td>
-                    </tr>-->
+                    </tr>
                 </tbody>
             </table>
         </div>
 </template>
 <script setup>
-//    import apiBooks from '../../compossables/Books';
-    import useSkills from '../../../composables/Skills';
+    import apiBooks from '../../../composables/Books';
+    import { onMounted } from 'vue';
+
+    const { books, getBooks } = apiBooks();
+    onMounted(() => getBooks());
+
+   
+   
 
 
 </script>
