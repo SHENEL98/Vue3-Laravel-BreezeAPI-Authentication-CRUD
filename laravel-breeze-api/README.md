@@ -18,3 +18,15 @@
 - *Going to try out rest api crud with out using authentication
 - create a model and controller
 - checked api does work through postman
+
+------------------
+
+Laravel permission by Spatie in Vue
+
+- install : composer require spatie/laravel-permission
+- config file and migration
+    php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+    php artisan config:clear
+    php artisan migrate
+- add the package's trait to User model
+    ..  use HasRoles;
