@@ -38,3 +38,7 @@ Laravel permission by Spatie in Vue
    set roles in there, and seed : php artisan db:seed --class=RoleTableSeeder   
 
 - Update RoleController
+
+----------------
+
+- update api.php

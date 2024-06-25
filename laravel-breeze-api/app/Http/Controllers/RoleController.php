@@ -18,8 +18,8 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::orderBy('id','DESC')->get();
-
-        return $this->sendResponse($roles,'Successfully',200);
+        return $roles;
+        //return response()->json($roles,'Successfully');
     }
 
     /**

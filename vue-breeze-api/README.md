@@ -21,3 +21,8 @@
 -----------------
 
 - do changes in vue component
+
+------------------
+
+- update Nav.vue and index.js
+- create role/Index.vue

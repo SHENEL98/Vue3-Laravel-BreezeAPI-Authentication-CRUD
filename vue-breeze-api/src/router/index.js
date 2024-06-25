@@ -30,6 +30,23 @@ const routes = [
     component: () => import("../components/pages/skill/Edit.vue"),
     props: true,
   },
+  //roleUser : 
+  {
+    path: "/roles",
+    name: "RolesIndex",
+    component: () => import("../components/pages/role/Index.vue"),
+  },
+  {
+    path: "/roles/create",
+    name: "RoleCreate",
+    component: () => import("../components/pages/role/FormRole.vue"),
+  },
+  {
+    path: "/roles/:id/edit",
+    name: "RoleEdit",
+    component: () => import("../components/pages/role/EditRole.vue"),
+    props: true,
+  },
   {
     path: "/login",
     name: "Login",
