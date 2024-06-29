@@ -30,7 +30,7 @@ class RoleController extends Controller
     public function create()
     {
         $permission = Permission::get();
-        return $this->sendResponse($permission,'Successfully',200);
+        return $permission;
 
     }
 
@@ -48,13 +48,13 @@ class RoleController extends Controller
                 'permission' => 'required'
             ]);
     
-            $role = Role::create(['name'=> $request->name]);
+            $role = Role::create(['name'=> $request->name, 'guard_name' => 'web']);
     
             $role->syncPermissions($request->permission);
     
             return $this->sendResponse(null,'Successfully',200);
         }catch(Exception $e){
-            return $this->sendError(null, 'Error'. $e->getMessage(),422);
+            return $e;
         }
 
     }
