@@ -61,7 +61,7 @@ const submitCreateRole = async() => {
     .then(response => {
         if(response.status === 200){
             isProcess.value = false;
-            router.push('/role');
+            router.push('/roles');
         }
         console.log("saved," + response.data.message);
     }).catch(error => {

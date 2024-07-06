@@ -87,16 +87,16 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::find($id);
-        $permission = Permission::get();
+        $permissions = Permission::get();
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
             ->pluck("role_has_permissions.permission_id","role_has_permissions.permission_id")
             ->all();
 
         $data['roles'] = $role;
-        $data['permission'] = $permission;
-        $data['permissions'] = $rolePermissions;
+        $data['permissions'] = $permissions;
+        $data['rolePermissions'] = $rolePermissions;
     
-        return $this->sendResponse($data, 'Success', 200);
+        return $data ;
     }
 
     /**
@@ -108,18 +108,21 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'permission' => 'required'
-        ]);
+        try{
+            $request->validate([
+                'name' => 'required',
+                'permission' => 'required'
+            ]);
 
-        $role = Role::find($id);
-        $role->name = $request->name;
-        $role->save();
+            $role = Role::find($id);
+            $role->name = $request->name;
+            $role->save();
 
-        $role->syncPermissions($request->permission);
-        return $this->sendResponse(null,'Successfully',200);
-
+            $role->syncPermissions($request->permission);
+            return $this->sendResponse(null,'Successfully',200);
+            }catch(Exception $e){
+            return $e;
+        }
     }
 
     /**
