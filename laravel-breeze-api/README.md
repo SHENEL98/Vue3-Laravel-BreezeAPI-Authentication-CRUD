@@ -42,3 +42,8 @@ Laravel permission by Spatie in Vue
 ----------------
 
 - update api.php
+
+-----------------
+Role-Based Access Control (RBAC) with Laravel and Vue
+
+- Set Up Role and Permission Models

@@ -31,5 +31,19 @@ class RoleTableSeeder extends Seeder
         $role->syncPermissions($permissions);
 
         $user->assignRole([$role->id]);
+
+        // Create Roles
+        $staff = Role::create(['name' => 'staff']);
+        $employee = Role::create(['name' => 'employee']);
+
+         // Create Permissions
+        Permission::create(['name' => 'view books']);
+        Permission::create(['name' => 'edit books']);
+        Permission::create(['name' => 'delete books']);
+        Permission::create(['name' => 'create books']);
+
+        // Assing Permissions to Roles
+        $staff->givePermissionTo(['view books', 'edit books']);
+        $employee->givePermissionTo(['view books']);
     }
 }
