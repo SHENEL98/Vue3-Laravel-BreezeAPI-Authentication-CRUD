@@ -46,4 +46,7 @@ Laravel permission by Spatie in Vue
 -----------------
 Role-Based Access Control (RBAC) with Laravel and Vue
 
-- Set Up Role and Permission Models
+- Set Up Role and Permission Models : modify RoleTableSeeder and add more roles and permissons. 
+    then run the seeder : "php artisan db:seed  --class=RolePermissionSeeder"
+
+-

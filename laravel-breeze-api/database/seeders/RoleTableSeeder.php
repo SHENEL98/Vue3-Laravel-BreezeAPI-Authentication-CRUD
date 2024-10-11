@@ -33,6 +33,7 @@ class RoleTableSeeder extends Seeder
         $user->assignRole([$role->id]);
 
         // Create Roles
+        //$admin = Role::create(['name' => 'admin']);
         $staff = Role::create(['name' => 'staff']);
         $employee = Role::create(['name' => 'employee']);
 
@@ -43,7 +44,9 @@ class RoleTableSeeder extends Seeder
         Permission::create(['name' => 'create books']);
 
         // Assing Permissions to Roles
+        //$admin->givePermissionTo(['view books', 'edit books', 'delete books', 'create books']);
         $staff->givePermissionTo(['view books', 'edit books']);
         $employee->givePermissionTo(['view books']);
+
     }
 }
