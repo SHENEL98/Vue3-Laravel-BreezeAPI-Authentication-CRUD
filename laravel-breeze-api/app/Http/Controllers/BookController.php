@@ -63,8 +63,13 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        book::create($request->validated());
-        return response()->json("Book stored");
+        // Check if the authenticated user has permission to create books
+        if (Auth::user()->can('create books')) {
+            $book = Book::create($request->all()); // Assuming validated input
+            return response()->json($book);
+        } else {
+            return response()->json(['error' => 'You do not have permission to create books'], 403);
+        }
     }
 
     /**
@@ -86,7 +91,14 @@ class BookController extends Controller
      */
     public function edit(book $book)
     {
-        //
+        $book = Book::find($id);
+
+        // Check if the user has permission to edit books
+        if (Auth::user()->can('edit books')) {
+            return response()->json($book);
+        } else {
+            return response()->json(['error' => 'You do not have permission to edit books'], 403);
+        }
     }
 
     /**
@@ -96,9 +108,18 @@ class BookController extends Controller
      * @param  \App\Models\book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, book $book)
+    // Update the specified book
+    public function update(Request $request, $id)
     {
-        //
+        $book = Book::find($id);
+
+        // Check if the user has permission to edit books
+        if (Auth::user()->can('edit books')) {
+            $book->update($request->all());
+            return response()->json($book);
+        } else {
+            return response()->json(['error' => 'You do not have permission to update books'], 403);
+        }
     }
 
     /**
@@ -107,9 +128,15 @@ class BookController extends Controller
      * @param  \App\Models\book  $book
      * @return \Illuminate\Http\Response
      */
+    // Remove the specified book
     public function destroy(book $book)
     {
-        $book->delete();
-        return response()->json("book deleted");
+        // Check if the user has permission to delete books
+        if (Auth::user()->can('delete books')) {
+            $book->delete();
+            return response()->json(['success' => 'Book deleted successfully!']);
+        } else {
+            return response()->json(['error' => 'You do not have permission to delete books'], 403);
+        }
     }
 }
