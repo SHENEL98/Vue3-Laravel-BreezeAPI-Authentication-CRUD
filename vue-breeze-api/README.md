@@ -26,3 +26,5 @@
 
 - update Nav.vue and index.js
 - create role/Index.vue
+
+- Check Permissions in on BookIndex component.

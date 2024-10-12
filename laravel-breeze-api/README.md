@@ -77,3 +77,5 @@ Role-Based Access Control (RBAC) with Laravel and Vue
             }
             ......
         }
+
+- Created a route to get user's permissions.
