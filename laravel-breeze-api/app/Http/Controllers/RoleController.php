@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
@@ -141,6 +142,24 @@ class RoleController extends Controller
             return $this->sendResponse(null,'Successfully deleted',200);
         }
         return $this->sendError(null,'Error',404);
+
+    }
+
+    public function getUserRolePermissions(){
+
+        $user = Auth::user();
+
+        // Check what roles the user has
+        $roles = $user->roles->pluck('name');
+        
+        // Check what permissions the user has
+        $permissions = $user->getAllPermissions()->pluck('name');
+
+        return response()->json([
+            'user' => $user,
+            'roles' => $roles,
+            'permissions' => $permissions,
+        ]);
 
     }
 }

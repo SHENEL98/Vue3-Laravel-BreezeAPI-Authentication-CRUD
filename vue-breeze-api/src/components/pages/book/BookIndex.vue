@@ -23,7 +23,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody v-if="hasPermission('view books')">
                     <tr v-for="book in books" :key="book.id" class="bg-white dark:bg-white-800">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray">
                             {{ book.name }}
@@ -32,11 +32,14 @@
                             {{ book.price }}
                         </td>
                         <td class="px-10 py-4 text-right">
-                            <!--<router-link :to="{name: 'SkillEdit', params: {id: skill.id}}" class="
-                                px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded"> Edit </router-link>
-                            <button @click="deleteSkill(skill.id)" class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded"> Delete</button>-->
+                            <!-- --<router-link :to="{name: 'BookEdit', params: {id: book.id}}" class="
+                                px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded"> Edit </router-link>-->
+                            <button @click="deleteBook(book.id)" class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded"> Delete</button>
                         </td>
                     </tr>
+                </tbody>
+                <tbody v-else>
+                    <h1>You do not have permission to view books</h1>
                 </tbody>
             </table>
         </div>
@@ -44,12 +47,44 @@
 <script setup>
     import apiBooks from '../../../composables/Books';
     import { onMounted } from 'vue';
+    import axios from 'axios';
 
     const { books, getBooks } = apiBooks();
     onMounted(() => getBooks());
+</script>
 
-   
-   
+<script>
+export default {
+  data() {
+    return {
+      userPermissions: [], // Permissions will be fetched from the API
+    };
+  },
+  created() {
+    this.fetchUserPermissions();
+  },
+  methods: {
+    async fetchUserPermissions() {
+      try {
+        const response = await axios.get('/api/getuserpermissions'); // get login user permissons
+        this.userPermissions = response.data.permissions; // Assuming permissions are returned
 
-
+      } catch (error) {
+        console.error("Failed to fetch user permissions", error);
+      }
+    },
+    hasPermission(permission) {
+      return this.userPermissions.includes(permission);
+    },
+    createBook() {
+      // Create book logic
+    },
+    editBook(book) {
+      // Edit book logic
+    },
+    deleteBook(book) {
+      // Delete book logic
+    }
+  }
+};
 </script>
