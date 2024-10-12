@@ -11,9 +11,9 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('skills', SkillController::class);
 });
 
-Route::group(['prefix' => 'v2'], function() {
+/*Route::group(['prefix' => 'v2'], function() {
    Route::apiResource('books',BookController::class);
-});
+});*/
 
 
 
@@ -37,7 +37,8 @@ Route::middleware(['auth:sanctum'])->group(function (){
         return $request->user();
     });
     Route::resource('/posts',PostController::class);
-    //Route::resource('/books',BookController::class);
+   
+    Route::resource('v2/books',BookController::class);
 
     Route::resource('roles',RoleController::class);
 
